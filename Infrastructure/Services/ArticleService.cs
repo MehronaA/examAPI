@@ -33,13 +33,25 @@ public class ArticleService:IArticleService
                 : Responce<string>.Created("Deleted successfuly");
     }
 
-    public async Task<Responce<List<Article>>> GetArticle()
+    public async Task<Responce<List<Article>>> GetArticles()
     {
         await using var connection = _context.GetConnection();
         connection.Open();
         var cmd = "select * from articles";
         var result = await connection.QueryAsync<Article>(cmd);
         return Responce<List<Article>>.Ok(result.ToList(),null);
+    }
+
+    public async Task<Responce<Article>> GetById(int id)
+    {
+        await using var connection = _context.GetConnection();
+        connection.Open();
+        var cmd = "select * from articles where id =@id";
+        var result = await connection.QueryFirstOrDefaultAsync<Article>(cmd, new { id });
+        return result == null
+                ? Responce<Article>.Fail(500, "Not updated")
+                : Responce<Article>.Ok(result, null);
+            
     }
 
     public async Task<Responce<string>> UpdateArticle(Article article)

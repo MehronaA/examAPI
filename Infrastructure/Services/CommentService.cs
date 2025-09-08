@@ -21,7 +21,17 @@ public class CommentService : ICommentService
                 ? Responce<string>.Fail(500, "Something goes wrong")
                 : Responce<string>.Created("Created successfuly");
     }
-
+    public async Task<Responce<Comment>> GetById(int id)
+    {
+        await using var connection = _context.GetConnection();
+        connection.Open();
+        var cmd = "select * from comments where id =@id";
+        var result = await connection.QueryFirstOrDefaultAsync<Comment>(cmd, new { id });
+        return result == null
+                ? Responce<Comment>.Fail(500, "Not updated")
+                : Responce<Comment>.Ok(result, null);
+            
+    }
     public async Task<Responce<string>> DeleteComment(int id)
     {
         await using var connection = _context.GetConnection();

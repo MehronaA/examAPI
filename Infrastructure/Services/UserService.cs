@@ -21,6 +21,17 @@ public class UserService : IUserService
                 ? Responce<string>.Fail(500, "Something goes wrong")
                 : Responce<string>.Created("Created successfuly");
     }
+    public async Task<Responce<User>> GetById(int id)
+    {
+        await using var connection = _context.GetConnection();
+        connection.Open();
+        var cmd = "select * from users where id =@id";
+        var result = await connection.QueryFirstOrDefaultAsync<User>(cmd, new { id });
+        return result == null
+                ? Responce<User>.Fail(500, "Not updated")
+                : Responce<User>.Ok(result, null);
+            
+    }
 
     public async Task<Responce<string>> DeleteUser(int id)
     {

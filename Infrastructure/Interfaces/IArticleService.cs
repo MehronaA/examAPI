@@ -7,7 +7,8 @@ namespace Infrastructure.Interfaces;
 
 public interface IArticleService
 {
-    Task<Responce<List<Article>>> GetArticle();
+    Task<Responce<List<Article>>> GetArticles();
+    Task<Responce<Article>> GetById(int id);
     Task<Responce<string>> CreateArticle(Article article);
     Task<Responce<string>> UpdateArticle(Article article);
     Task<Responce<string>> DeleteArticle(int id);

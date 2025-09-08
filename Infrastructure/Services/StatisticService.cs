@@ -25,7 +25,7 @@ public class StatisticService : IStatisticService
     {
         await using var connection = _context.GetConnection();
         connection.Open();
-        var cmd = "select * from comments where id = @articleId order by articleId desc limit 5";
+        var cmd = "select * from comments where articleId = @articleId order by articleId desc limit 5";
         var result = await connection.QueryAsync<Comment>(cmd, new { articleId});
         return Responce<List<Comment>>.Ok(result.ToList(),null);
     }
@@ -37,7 +37,7 @@ public class StatisticService : IStatisticService
         var cmd = @"select u.userName, a.title,a.content,a.description,a.createdAt 
                     from users u
                     join articles as a on u.id=a.userId
-                    where a.status= 'published' limit 10";
+                    where a.status= 'published' order by createdAt desclimit 10";
         var result = await connection.QueryAsync<RecentPublishedArticleDTO>(cmd);
         return Responce<List<RecentPublishedArticleDTO>>.Ok(result.ToList(),null);
     }
@@ -46,7 +46,7 @@ public class StatisticService : IStatisticService
     {
         await using var connection = _context.GetConnection();
         connection.Open();
-        var cmd = "select * fom articles where userId=@userId";
+        var cmd = "select * from articles where userId=@userId";
         var result = await connection.QueryAsync<Article>(cmd,new { userId});
         return Responce<List<Article>>.Ok(result.ToList(),null);
     }

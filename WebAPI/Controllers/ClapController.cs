@@ -37,4 +37,11 @@ public class ClapController
     {
         return await clapService.DeleteClap(id);
     }
+
+
+    [HttpGet("{id}")]
+    public async Task<Responce<Clap>> GetById(int id)
+    {
+        return await clapService.GetById(id);
+    }
 }

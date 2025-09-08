@@ -26,7 +26,7 @@ public class UserController
     }
 
     [HttpPut("{id:int}")]
-    public async Task<Responce<string>> UpdateUser(int id,User user)
+    public async Task<Responce<string>> UpdateUser(int id, User user)
     {
         user.Id = id;
         return await userService.UpdateUser(user);
@@ -36,5 +36,12 @@ public class UserController
     public async Task<Responce<string>> DeleteUser(int id)
     {
         return await userService.DeleteUser(id);
+    }
+
+
+    [HttpGet("{id}")]
+    public async Task<Responce<User>> GetById(int id)
+    {
+        return await userService.GetById(id);
     }
 }

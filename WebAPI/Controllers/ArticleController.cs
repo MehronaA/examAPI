@@ -24,7 +24,7 @@ public class ArticleController
     }
 
     [HttpPut("{id:int}")]
-    public async Task<Responce<string>> UpdateArticle(int id,Article article)
+    public async Task<Responce<string>> UpdateArticle(int id, Article article)
     {
         article.Id = id;
         return await articleService.UpdateArticle(article);
@@ -35,6 +35,13 @@ public class ArticleController
     {
         return await articleService.DeleteArticle(id);
     }
+
+    [HttpGet("{id}")]
+    public async Task<Responce<Article>> GetById(int id)
+    {
+        return await articleService.GetById(id);
+    }
+    
     
     
 }

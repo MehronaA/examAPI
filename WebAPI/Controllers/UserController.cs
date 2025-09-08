@@ -25,9 +25,10 @@ public class UserController
         return await userService.GetUsers();
     }
 
-    [HttpPut]
-    public async Task<Responce<string>> UpdateUser(User user)
+    [HttpPut("{id:int}")]
+    public async Task<Responce<string>> UpdateUser(int id,User user)
     {
+        user.Id = id;
         return await userService.UpdateUser(user);
     }
 

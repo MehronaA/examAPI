@@ -25,13 +25,14 @@ public class ClapController
         return await clapService.GetClaps();
     }
 
-    [HttpPut]
-    public async Task<Responce<string>> UpdateClap(Clap clap)
+    [HttpPut("{id:int}")]
+    public async Task<Responce<string>> UpdateClap(int id, Clap clap)
     {
+        clap.Id = id;
         return await clapService.UpdateClap(clap);
     }
 
-    [HttpDelete("{id}")]
+    [HttpDelete("{id:int}")]
     public async Task<Responce<string>> DeleteClap(int id)
     {
         return await clapService.DeleteClap(id);

@@ -20,16 +20,17 @@ public class ArticleController
     [HttpGet]
     public async Task<Responce<List<Article>>> GetArticle()
     {
-        return await articleService.GetArticle();
+        return await articleService.GetArticles();
     }
 
-    [HttpPut]
-    public async Task<Responce<string>> UpdateArticle(Article article)
+    [HttpPut("{id:int}")]
+    public async Task<Responce<string>> UpdateArticle(int id,Article article)
     {
+        article.Id = id;
         return await articleService.UpdateArticle(article);
     }
 
-    [HttpDelete("{id}")]
+    [HttpDelete("{id:int}")]
     public async Task<Responce<string>> DeleteArticle(int id)
     {
         return await articleService.DeleteArticle(id);

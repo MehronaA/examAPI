@@ -25,9 +25,10 @@ public class CommentController
         return await commentService.GetComment();
     }
 
-    [HttpPut]
-    public async Task<Responce<string>> UpdateComment(Comment comment)
+    [HttpPut ("{id:int}")]
+    public async Task<Responce<string>> UpdateComment(int id,Comment comment)
     {
+        comment.Id = id;
         return await commentService.UpdateComment(comment);
     }
 

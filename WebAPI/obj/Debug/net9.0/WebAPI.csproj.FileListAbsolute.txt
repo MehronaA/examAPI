@@ -39,3 +39,4 @@ C:\Users\Sohibjon\Desktop\ExamAPI\WebAPI\obj\Debug\net9.0\refint\WebAPI.dll
 C:\Users\Sohibjon\Desktop\ExamAPI\WebAPI\obj\Debug\net9.0\WebAPI.pdb
 C:\Users\Sohibjon\Desktop\ExamAPI\WebAPI\obj\Debug\net9.0\WebAPI.genruntimeconfig.cache
 C:\Users\Sohibjon\Desktop\ExamAPI\WebAPI\obj\Debug\net9.0\ref\WebAPI.dll
+C:\Users\Sohibjon\Desktop\ExamAPI\WebAPI\obj\Debug\net9.0\WebAPI.sourcelink.json

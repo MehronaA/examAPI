@@ -9,7 +9,11 @@ namespace Infrastructure.Services;
 
 public class ArticleService:IArticleService
 {
-    private readonly DataContext _context = new();
+    private readonly DataContext _context;
+    public ArticleService(DataContext context)
+    {
+        _context = context;
+    }
 
     public async Task<Responce<string>> CreateArticle(Article article)
     {

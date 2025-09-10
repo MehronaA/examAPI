@@ -12,7 +12,11 @@ namespace WebAPI.Controllers;
 [Route("api/statistics")]
 public class StatisticController
 {
-    private readonly IStatisticService statisticService = new StatisticService();
+    private readonly IStatisticService statisticService;
+    public StatisticController(IStatisticService service)
+    {
+        statisticService = service;
+    }
 
     [HttpGet("user-article-{userId:int}")]
     public async Task<Responce<List<Article>>> GetUserArticlesAsync(int userId)

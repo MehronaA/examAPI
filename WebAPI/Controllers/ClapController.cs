@@ -11,7 +11,11 @@ namespace WebAPI.Controllers;
 [Route("api/clap")]
 public class ClapController
 {
-    private readonly IClapService clapService = new ClapService();
+    private readonly IClapService clapService;
+    public ClapController(IClapService service)
+    {
+        clapService = service;
+    }
 
     [HttpPost]
     public async Task<Responce<string>> CreateClap(Clap clap)

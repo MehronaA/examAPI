@@ -11,7 +11,11 @@ namespace WebAPI.Controllers;
 [Route("api/comment")]
 public class CommentController
 {
-    private readonly ICommentService commentService = new CommentService();
+    private readonly ICommentService commentService;
+    public CommentController(ICommentService service)
+    {
+        commentService = service;   
+    }
 
     [HttpPost]
     public async Task<Responce<string>> CreateComment(Comment comment)

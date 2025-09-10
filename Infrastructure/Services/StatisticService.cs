@@ -10,7 +10,11 @@ namespace Infrastructure.Services;
 
 public class StatisticService : IStatisticService
 {
-    private readonly DataContext _context = new();
+    private readonly DataContext _context ;
+     public StatisticService(DataContext context)
+    {
+        _context = context;
+    }
 
     public async Task<Responce<List<ArticleAndClapCountDTO>>> GetArticleClapsCountAsync()
     {
@@ -18,7 +22,7 @@ public class StatisticService : IStatisticService
         connection.Open();
         var cmd = "select articleId, count(*) from claps group by articleId";
         var result = await connection.QueryAsync<ArticleAndClapCountDTO>(cmd);
-        return Responce<List<ArticleAndClapCountDTO>>.Ok(result.ToList(),null);
+        return Responce<List<ArticleAndClapCountDTO>>.Ok(result.ToList(), null);
     }
 
     public async Task<Responce<List<Comment>>> GetArticleRecentCommentsAsync(int articleId)

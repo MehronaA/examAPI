@@ -11,7 +11,11 @@ namespace WebAPI.Controllers;
 [Route("api/user")]
 public class UserController
 {
-    private readonly IUserService userService = new UserService();
+    private readonly IUserService userService ;
+    public UserController(IUserService service)
+    {
+        userService = service;
+    }
 
     [HttpPost]
     public async Task<Responce<string>> CreateUser(User user)

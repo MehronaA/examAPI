@@ -9,7 +9,11 @@ using Microsoft.AspNetCore.Mvc;
 [Route("api/article")]
 public class ArticleController
 {
-    private readonly IArticleService articleService = new ArticleService();
+    private readonly IArticleService articleService;
+    public ArticleController(IArticleService service)
+    {
+        articleService = service;   
+    }
 
     [HttpPost]
     public async Task<Responce<string>> CreateArticle(Article article)
@@ -41,7 +45,4 @@ public class ArticleController
     {
         return await articleService.GetById(id);
     }
-    
-    
-    
 }

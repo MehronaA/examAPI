@@ -9,7 +9,11 @@ namespace Infrastructure.Services;
 
 public class CommentService : ICommentService
 {
-    private readonly DataContext _context = new();
+    private readonly DataContext _context;
+    public CommentService(DataContext context)
+    {
+        _context = context;
+    }
 
     public async Task<Responce<string>> CreateComment(Comment comment)
     {

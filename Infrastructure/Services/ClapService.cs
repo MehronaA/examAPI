@@ -9,7 +9,11 @@ namespace Infrastructure.Services;
 
 public class ClapService : IClapService
 {
-    private readonly DataContext _context = new();
+    private readonly DataContext _context;
+    public ClapService(DataContext context)
+    {
+        _context = context;
+    }
 
     public async Task<Responce<string>> CreateClap(Clap clap)
     {
